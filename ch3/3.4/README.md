@@ -1,6 +1,8 @@
 # 노드 내장 객체 알아보기
 
-## 3.4.1 global
+## [3.4.1 global](./01)
+global 객체입니다. 브라우저의 window와 같은 전역 객체입니다.  
+전역 객체이므로 모든 파일에서 접근할 수 있습니다. 또한 window.open 메서드를 그냥 open으로 호출 할 수 있는 것처럼 global도 생략할 수 있습니다. 노드 콘솔에 로그를 기록하는 console 객체도 원래는 global.console입니다.
 
 ## [3.4.2 console](./02/console.js)
 - ```console.time(레이블)```: ```console.timeEnd(레이블)```과 대응되어 같은 레이블을 가진 time과 timeEnd 사이의 시간을 측정합니다.
@@ -55,3 +57,9 @@ Trace: 에러 위치 추적
 - ```clearInterval(아이디)```: setInterval을 취소합니다.
 - ```clearImmediate(아이디)```: setImmediate를 취소합니다.
 
+**제일 먼저 실행되는 것은 immediate입니다. immediate2는 바로 clearImmediate를 사용해서 취소했으므로 실행되지 않습니다. 코드 실행 1.5초 후에는 timeout의 콜백이 실행될 것입니다. interval의 콜백은 1초마다 실행되므로 코드 실행 후 2초가 지났을 때도 콜백이  실행됩니다. 2.5초가 지났을 때 clearTimeout과 clearInterval이 각각 timeout2와 interval을 취소합니다. 따라서 코드 실행 3초 후에 로그가 아무것도 남지 않습니다.**
+
+## [3.4.4 __filename, __dirname](./04/filename.js)
+노드에서는 파일 사이에 모듈 관계가 있는 경우가 많으므로 때로는 현재 파일의 경로나 파일명을 알아야 합니다.
+노드에서는 __filename, __dirname이라는 키워드로 경로에 대한 정보를 제공합니다.  
+파일에 __fileanme, __dirname을 넣어두면 실행시 현재 파일명과 현재 파일 경로가 바뀝니다.
