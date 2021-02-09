@@ -63,3 +63,9 @@ Trace: 에러 위치 추적
 노드에서는 파일 사이에 모듈 관계가 있는 경우가 많으므로 때로는 현재 파일의 경로나 파일명을 알아야 합니다.
 노드에서는 __filename, __dirname이라는 키워드로 경로에 대한 정보를 제공합니다.  
 파일에 __fileanme, __dirname을 넣어두면 실행시 현재 파일명과 현재 파일 경로가 바뀝니다.
+
+## [3.4.5 module, exports, require](./05)
+module.exports만 사용했는데, module 객체 말고 export 객체로도 모듈을 만들 수 있습니다.  
+
+module.exports로 한 번에 대입하는 대신, 각각의 변수를 exports 객체에 하나씩 넣었습니다. 동일하게 동작하는 이유는 module.exports와 exports가 같은 객체를 참조하기 때문입니다.  
+실제로 ```console.log(modules.exports === exports)```를 하면 true가 나옵니다. 따라서 exports 객체에 add 함수를 넣으면 module.exports에도 add 함수가 들어갑니다.
