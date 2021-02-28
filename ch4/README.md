@@ -64,3 +64,18 @@ createServer 메서드가 인수를 두 개 받습니다. 두 번째 인수는 h
 
 - [**HTTP/1.1과 HTTP/2의 차이점**](https://seokbeomkim.github.io/posts/http1-http2/)
 - [**HTTP1.1 vs HTTP2.0 차이점 간단히 살펴보기**](https://medium.com/@shlee1353/http1-1-vs-http2-0-%EC%B0%A8%EC%9D%B4%EC%A0%90-%EA%B0%84%EB%8B%A8%ED%9E%88-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-5727b7499b78)
+
+## cluster
+cluster 모듈은 기본적으로 싱글 프로세스로 동작하는 노드가 CPU 코어를 모두 사용할 수 있게 해 주는 모듈입니다.  
+포트를 공유하는 노드 프로세스를 여러 개 둘 수도 있으므로, 요청이 많이 들어왔을 때 병렬로 실행된 서버의 개수만큼 요청이 분산되게 할 수 있습니다. 서버에 무리가 덜 가게 되는 셈입니다.
+
+예를 들어 코어가 여덞 개인 서버가 있을 때, 노드는 보통 코어를 하나만 활용합니다. 하지만 cluster 모듈을 설정하여 코어 하나당 노드 프로세스 하나가 돌아가게 할 수 있습니다. 성능이 꼭 여덟 배가 되는 것은 아니지만 코어를 하나만 사용할 때에 비해 성능이 개선됩니다.  
+단점은 메모리를 공유하지 못하는 등의 단점도 있습니다. 세션을 메모리에 저장하는 경우 문제가 될 수 있습니다. 이는 레디스 등 서버를 도입하여 해결할 수 있습니다.
+
+![Node.js Cluster](https://jsonworld.com/content/uploads/image/json_world_407847262979165.png)
+
+워커 프로세스가 실질적인 일을 하는 프로세스입니다.  
+
+
+- [**Node.js v15.10.0 Documentation Cluster**](https://nodejs.org/api/cluster.html)
+- [**Node.js Cluster - Boost Node App Performance & Stability with Clustering**](https://youtu.be/6xIbVPyh9wo)
